@@ -37,25 +37,8 @@ define('EMAIL_SENDER_NAME', $configuration['email_sender_name']);
 define('EMAIL_BCC', $configuration['email_bcc']);
 
 
-
-
-
-//reporting
-define('PDF_HEADER', $globleConnectReport['pdf_report_header']);
-define('EMAIL_HEADER', $globleConnectReport['email_header']);
-define('EMAIL_FOOTER', $globleConnectReport['email_footer']);
-define('MESSAGE_HEADER', $globleConnectReport['message_header']);
-define('REPORT_MODE', $globleConnectReport['report_mode']);
-
-
 define('SEO_TITLE', $configuration['seo_title']);
 define('SEO_DESC', $configuration['seo_desc']);
-
-
-define('DEFAULT_PAYMENT', $globleConnectCheckout['default_payment_mode']);
-
-define('PRODUCT_PATH_PRE', $globleConnectCheckout['product_path_pre']);
-define('PRODUCT_PATH_POST', $globleConnectCheckout['product_path_post']);
 
 define('HEADERCSS', $globleConnectTheme['style_css']);
 

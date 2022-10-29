@@ -16,18 +16,7 @@ try {
         $globleConnectDB = $row;
     }
 
-    $stmt = $conn->prepare('SELECT * FROM configuration_report');
-    $stmt->execute();
-    while ($row = $stmt->fetch()) {
-        $globleConnectReport = $row;
-    }
-    
-    
-    $stmt = $conn->prepare('SELECT * FROM configuration_cartcheckout');
-    $stmt->execute();
-    while ($row = $stmt->fetch()) {
-        $globleConnectCheckout = $row;
-    }
+  
     
     $stmt = $conn->prepare('SELECT * FROM theme_css');
     $stmt->execute();

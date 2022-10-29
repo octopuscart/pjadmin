@@ -22,7 +22,7 @@ class Curd_model extends CI_Model {
     public function get($table, $order_by = 'asc') {
         $this->db->order_by('id', $order_by);
         $query = $this->db->get($table);
-        $data = $query->result_array();
+        $data = $query ? $query->result_array():[];
         return $data;
     }
 

@@ -320,11 +320,11 @@
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: right">Shipping Amount</td>
-                    <td style="text-align: right;width: 60px"><?php echo GLOBAL_CURRENCY . " " . number_format($order_data->credit_price, 2, '.', ''); ?> </td>
+                    <td style="text-align: right;width: 60px"><?php echo GLOBAL_CURRENCY . " " . number_format($order_data->shipping ? $order_data->shipping : 0, 2, '.', ''); ?> </td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: right">Coupon Discount</td>
-                    <td style="text-align: right;width: 60px"><?php echo GLOBAL_CURRENCY . " " . number_format($order_data->credit_price, 2, '.', ''); ?> </td>
+                    <td style="text-align: right;width: 60px"><?php echo GLOBAL_CURRENCY . " " . number_format($order_data->discount ? $order_data->discount : 0, 2, '.', ''); ?> </td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: right">Toal Amount</td>

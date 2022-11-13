@@ -14,6 +14,16 @@ class Api extends REST_Controller {
         $this->load->view('welcome_message');
     }
 
+    function lifeChangeingVideos_get($language_id){
+        $finaldata = [];
+        $model_data = $this->Curd_model->getCondition("life_changing_videos", 
+        array("language"=>"$language_id"), "desc");
+        foreach ($model_data as $key => $value) {
+            array_push($finaldata, $value);
+        }
+        $this->response($finaldata);
+    }
+
     function listApiData_get($apipath) {
         $apiSet = array(
             "ourChurchese" => array(
@@ -36,6 +46,22 @@ class Api extends REST_Controller {
                 "table" => "paul_about_us",
                 "imagefolder" => "about_us",
             ),
+            "todaysBlessings"=>array(
+                "table"=>"todays_blessings",
+                "imagefolder"=>"blessings",
+            ),
+            "donateImages"=>array(
+                "table"=>"donate_images",
+                "imagefolder"=>"donate_support",
+            ),
+            "paulEvent"=>array(
+                "table"=>"paul_event",
+                "imagefolder"=>"events",
+            ),
+            "amazoneBooks"=>array(
+                "table"=>"amazone_books",
+                "imagefolder"=>"amazone_books",
+            )
         );
         header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
         header('Access-Control-Allow-Origin: *');

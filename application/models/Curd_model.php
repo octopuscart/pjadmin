@@ -26,6 +26,16 @@ class Curd_model extends CI_Model {
         return $data;
     }
 
+    public function getCondition($table, $conditionArray, $order_by = 'asc') {
+        foreach ($conditionArray as $column => $value) {
+            $this->db->where($column, $value);
+        }
+        $this->db->order_by('id', $order_by);
+        $query = $this->db->get($table);
+        $data = $query ? $query->result_array():[];
+        return $data;
+    }
+
     public function get_single($table, $id) {
         $this->db->where('id', $id);
         $query = $this->db->get($table);

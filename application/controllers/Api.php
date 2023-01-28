@@ -19,6 +19,40 @@ class Api extends REST_Controller {
         $model_data = $this->Curd_model->getCondition("life_changing_videos", 
         array("language"=>"$language_id"), "desc");
         foreach ($model_data as $key => $value) {
+                array_push($finaldata, $value);
+        }
+        $this->response($finaldata);
+    }
+
+    function lyricsData_get($lyrics_id){
+        $finaldata = [];
+        $model_data = $this->Curd_model->getCondition("lyrics_tracks", 
+        array("lyricsid"=>"$lyrics_id"), "desc");
+        foreach ($model_data as $key => $value) {
+            $value["image"] = base_url("assets/uploadata/worship_songs/thumbs/" . $value["image"]);
+            array_push($finaldata, $value);
+        }
+        $this->response($finaldata);
+    }
+
+    function albumData_get($album_id){
+        $finaldata = [];
+        $model_data = $this->Curd_model->getCondition("worship_songs", 
+        array("albumId"=>"$album_id"), "desc");
+        foreach ($model_data as $key => $value) {
+            $value["image"] = base_url("assets/uploadata/worship_songs/thumbs/" . $value["image"]);
+            $value["song"] = base_url("assets/uploadata/worship_songs/" . $value["song"]);
+            array_push($finaldata, $value);
+        }
+        $this->response($finaldata);
+    }
+
+    function charityWorkImages_get($charity_id){
+        $finaldata = [];
+        $model_data = $this->Curd_model->getCondition("charity_images", 
+        array("charityWorkId"=>"$charity_id"), "desc");
+        foreach ($model_data as $key => $value) {
+            $value["image"] = base_url("assets/uploadata/charity/" . $value["image"]);
             array_push($finaldata, $value);
         }
         $this->response($finaldata);
@@ -61,6 +95,22 @@ class Api extends REST_Controller {
             "amazoneBooks"=>array(
                 "table"=>"amazone_books",
                 "imagefolder"=>"amazone_books",
+            ),
+            "lyrics"=>array(
+                "table"=>"lyrics",
+                "imagefolder"=>"worship_songs/thumbs"
+            ),
+            "lyrics"=>array(
+                "table"=>"lyrics",
+                "imagefolder"=>"worship_songs/thumbs"
+            ),
+            "worshipSongsAlbum"=>array(
+                "table"=>"paul_audio_album",
+                "imagefolder"=>"worship_songs/thumbs"
+            ),
+            "charityWorks"=>array(
+                "table"=>"charity_work",
+                "imagefolder"=>"charity"
             )
         );
         header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");

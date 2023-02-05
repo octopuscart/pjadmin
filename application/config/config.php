@@ -30,10 +30,10 @@ $islocal = false;
 
 if (strpos($baselink, '192.168')) {
     $islocal = true;
-    $baselinkmain = 'http://' . $baselinkurl . '/pjsadmin';
+    $baselinkmain = 'http://' . $baselinkurl . '/pjadmin';
 } elseif (strpos($baselink, 'localhost')) {
     $islocal = true;
-    $baselinkmain = 'http://' . $baselinkurl . '/pjsadmin';
+    $baselinkmain = 'http://' . $baselinkurl . '/pjadmin';
 } else {
     $baselinkmain = 'https://' . $baselinkurl . '/';
 }

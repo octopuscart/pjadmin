@@ -14,6 +14,13 @@ class Api extends REST_Controller {
         $this->load->view('welcome_message');
     }
 
+    public function tableStructure_get($tablename){
+        echo $tablename;
+        $fields = $this->db->field_data($tablename);
+        $this->response($fields);
+
+    }
+
     function lifeChangeingVideos_get($language_id){
         $finaldata = [];
         $model_data = $this->Curd_model->getCondition("life_changing_videos", 
@@ -59,6 +66,13 @@ class Api extends REST_Controller {
     }
 
     function listApiData_get($apipath) {
+        $meta_data = $this->input->get();
+        $draw = intval($this->input->get("draw"));
+        $start = intval($this->input->get("start"));
+        $length = intval($this->input->get("length"));
+        $search = $this->input->get("search");
+
+        print_r($meta_data);
         $apiSet = array(
             "ourChurchese" => array(
                 "table" => "our_churches",
@@ -117,8 +131,16 @@ class Api extends REST_Controller {
         header('Access-Control-Allow-Origin: *');
         $finaldata = [];
         if (isset($apiSet[$apipath])) {
-            $tablename = $apiSet[$apipath]["table"];
+           echo  $tablename = $apiSet[$apipath]["table"];
             $imagepath = $apiSet[$apipath]["imagefolder"];
+            $fields = $this->db->field_data($tablename);
+            $tableFieldsName = array();
+        
+            foreach ($fields as $fik => $fiv) {
+                echo $fiv->name;
+                array_push($tableFieldsName, $fiv->name);
+            }
+            
             $model_data = $this->Curd_model->get($tablename);
             foreach ($model_data as $key => $value) {
                 $value["image"] = base_url("assets/uploadata/$imagepath/" . $value["image"]);

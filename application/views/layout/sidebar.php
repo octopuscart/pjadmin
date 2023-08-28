@@ -7,27 +7,19 @@ if ($userdata) {
 }
 $menu_control = array();
 
+$dataManagementMenu = array();
+foreach (APISET as $key => $value) {
+    $dataManagementMenu[$value["title"]] = site_url("Services/tableReport/$key");
+}
+
 $product_menu = array(
-    "title" => "Product Manegement",
+    "title" => "Data Manegement",
     "icon" => "ion-cube",
     "active" => "",
-    "sub_menu" => array(
-//        "Add Product" => site_url("ProductManager/add_product"),
-        "Product Reports" => site_url("ProductManager/productReport"),
-        "Categories" => site_url("ProductManager/categories"),
-        "Product Out Of Stock" => site_url("ProductManager/productReportStockOut"),
-        "Product Removed" => site_url("ProductManager/productReportTrash"),
-        "Items Prices" => site_url("ProductManager/categoryItems"),
-        "Product Sorting" => site_url("ProductManager/productSorting"),
-//        "Product Colors" => site_url("ProductManager/productColors"),
-    ),
+    "sub_menu" => $dataManagementMenu,
 );
 
-if (DEFAULT_PAYMENT == 'No') {
-    unset($product_menu['sub_menu']['Items Prices']);
-} else {
-    
-}
+
 
 array_push($menu_control, $product_menu);
 

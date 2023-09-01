@@ -9,8 +9,8 @@ $menu_control = array();
 
 function getSubMenu($main_menu) {
     $dataManagementMenu = array();
-    foreach (MENULIST[$main_menu] as $key => $value) {
-        $api_menu_obj = APISET[$value];
+    foreach (json_decode(MENULIST, true)[$main_menu] as $key => $value) {
+        $api_menu_obj = json_decode(APISET, true)[$value];
         $dataManagementMenu[$api_menu_obj["title"]] = site_url("Services/tableReport/$value");
     }
     return $dataManagementMenu;

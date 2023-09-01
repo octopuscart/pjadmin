@@ -66,7 +66,7 @@ class Curd_model extends CI_Model {
     }
 
     public function getApiConfig($apipath, $parent_id = 0) {
-        $serviceObj = APISET[$apipath];
+        $serviceObj = json_decode(APISET, true)[$apipath];
         $fieldsName = $this->db->list_fields($serviceObj["table"]);
         $ignoreField = $serviceObj["ignore_field"];
         $has_link = isset($serviceObj["child_api"]) ? true : false;
@@ -111,7 +111,7 @@ class Curd_model extends CI_Model {
     }
 
     public function deleteRecord($apipath, $id) {
-        $serviceObj = APISET[$apipath];
+        $serviceObj =  json_decode(APISET, true)[$apipath];
         $pk_name = $serviceObj["pk"];
         $this->db->where($pk_name, $id);
         $this->db->delete($serviceObj["table"]);

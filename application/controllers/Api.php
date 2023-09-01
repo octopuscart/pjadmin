@@ -80,7 +80,7 @@ class Api extends REST_Controller {
         $length = intval($this->input->get("length"));
         $search = $this->input->get("search");
 
-        $apiSet = APISET;
+        $apiSet =  json_decode(APISET, true);
         header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
         header('Access-Control-Allow-Origin: *');
         $finaldata = [];
@@ -118,7 +118,7 @@ class Api extends REST_Controller {
     }
 
     function dataTableApi_get($apipath, $parent_id = 0) {
-        $apiSet = APISET;
+        $apiSet =  json_decode(APISET, true);
         header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
         header('Access-Control-Allow-Origin: *');
         $finaldata = [];

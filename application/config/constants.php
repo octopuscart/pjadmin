@@ -403,7 +403,7 @@ $apiSets = array(
     ),
 );
 
-define('APISET', $apiSets);
+define('APISET', json_encode($apiSets));
 
 $menuLists = array(
     "Reports" => array(
@@ -434,5 +434,5 @@ $menuLists = array(
     )
 );
 
-define('MENULIST', $menuLists);
+define('MENULIST', json_encode($menuLists));
 

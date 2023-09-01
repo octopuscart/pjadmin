@@ -129,7 +129,7 @@ defined('EXIT_DATABASE') OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN') OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
-$apiSet = array(
+$apiSets = array(
     "ourChurchese" => array(
         "table" => "our_churches",
         "imagefolder" => "our_churches",
@@ -403,9 +403,9 @@ $apiSet = array(
     ),
 );
 
-defined('APISET') && define('APISET', $apiSet);
+define('APISET', $apiSets);
 
-$menuList = array(
+$menuLists = array(
     "Reports" => array(
         "magazine_registration",
         "youngPartners",
@@ -433,6 +433,6 @@ $menuList = array(
         "pastorsCollage"
     )
 );
-defined('MENULIST') && define('MENULIST', $menuList);
 
+define('MENULIST', $menuLists);
 

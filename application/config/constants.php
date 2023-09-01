@@ -403,7 +403,7 @@ $apiSet = array(
     ),
 );
 
-define('APISET', $apiSet);
+defined('APISET') && define('APISET', $apiSet);
 
 $menuList = array(
     "Reports" => array(
@@ -433,6 +433,6 @@ $menuList = array(
         "pastorsCollage"
     )
 );
+defined('MENULIST') && define('MENULIST', $menuList);
 
-define('MENULIST', $menuList);
 

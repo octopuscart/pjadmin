@@ -572,7 +572,7 @@ abstract class REST_Controller extends CI_Controller {
             (! ($this->config->item('rest_enable_keys') && $this->_allow === TRUE) ||
                 ($this->config->item('allow_auth_and_keys') === TRUE && $this->_allow === TRUE)))
         {
-            $rest_auth = strtolower($this->config->item('rest_auth'));
+            $rest_auth = strtolower($this->config->item('rest_auth')?? '');
             switch ($rest_auth)
             {
                 case 'basic':

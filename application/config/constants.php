@@ -133,62 +133,306 @@ $apiSet = array(
     "ourChurchese" => array(
         "table" => "our_churches",
         "imagefolder" => "our_churches",
-        "title" => "Our Churches"
+        "image_field" => "image",
+        "title" => "Our Churches",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "writable"=>true,
+        "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "tvPrograms" => array(
         "table" => "tv_program",
         "imagefolder" => "tv_programs",
-        "title" => "TV Programs"
+        "image_field" => "image",
+        "title" => "TV Programs",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "writable"=>true,
+        "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "bibleCollege" => array(
         "table" => "paul_bible",
         "imagefolder" => "bible_collage",
-        "title" => "Bible College"
+        "image_field" => "image",
+        "title" => "Bible College",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "pastorsLeaders" => array(
         "table" => "pastors_images",
         "imagefolder" => "pastors",
-        "title" => "Pastors Leaders"
+        "image_field" => "image",
+        "title" => "Pastors Leaders",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "aboutUs" => array(
         "table" => "paul_about_us",
         "imagefolder" => "about_us",
-        "title" => "About Us"
+        "image_field" => "image",
+        "title" => "About Us",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "writable"=>true,
+        "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "todaysBlessings" => array(
         "table" => "todays_blessings",
         "imagefolder" => "blessings",
-        "title" => "Todays Blessings"
+        "image_field" => "image",
+        "title" => "Todays Blessings",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "writable"=>true,
+        "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "donateImages" => array(
         "table" => "donate_images",
         "imagefolder" => "donate_support",
-        "title" => "Donate"
+        "image_field" => "image",
+        "title" => "Donations",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "writable"=>true,
+        "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "paulEvent" => array(
         "table" => "paul_event",
         "imagefolder" => "events",
-        "title" => "Church Events"
+        "image_field" => "image",
+        "title" => "Church Events",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "writable"=>true,
+        "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "amazoneBooks" => array(
         "table" => "amazone_books",
         "imagefolder" => "amazone_books",
-        "title" => "Amazon Books"
+        "image_field" => "image",
+        "title" => "Amazon Books",
+        "pk" => "id",
+        "foreign_key" => array(),
+        "ignore_field" => array("created_on", "create_by", "modified_on"),
+        "writable"=>true,
+    ),
+    "lyricsTrack" => array(
+        "table" => "lyrics_tracks",
+        "imagefolder" => "worship_songs/thumbs",
+        "image_field" => "image",
+        "title" => "Lyrics",
+        "pk" => "id",
+        "foreign_key" => array(),
+        "foreign_key" => array(
+            "foreign_key" => "lyricsId",
+            "table_name" => "lyrics",
+            "parent_api" => "lyrics",
+            "title" => "name",
+            "pk" => "id",
+            "parent_api" => "lyrics"
+        ),
+         "writable"=>true,
+        "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "lyrics" => array(
         "table" => "lyrics",
         "imagefolder" => "worship_songs/thumbs",
-        "title" => "Lyrics"
+        "image_field" => "image",
+        "title" => "Lyrics",
+        "pk" => "id",
+        "foreign_key" => array(),
+        "child_api" => array(
+            "child_api" => "lyricsTrack",
+            "connect_button" => "View Lyrics",
+            "pk" => "id"
+        ),
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "worshipSongs" => array(
+        "table" => "worship_songs",
+        "imagefolder" => "worship_songs/thumbs",
+        "image_field" => "image",
+        "title" => "Worship Songs",
+        "pk" => "id",
+        "foreign_key" => array(
+            "foreign_key" => "albumId",
+            "table_name" => "paul_audio_album",
+            "title" => "name",
+            "pk" => "id",
+            "parent_api" => "worshipSongsAlbum",
+        ),
+         "writable"=>true,
+        "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "worshipSongsAlbum" => array(
         "table" => "paul_audio_album",
         "imagefolder" => "worship_songs/thumbs",
-        "title" => "Worship Songs Album"
+        "image_field" => "image",
+        "title" => "Worship Songs Album",
+        "foreign_key" => array(),
+        "pk" => "id",
+         "writable"=>true,
+        "child_api" => array(
+            "child_api" => "worshipSongs",
+            "connect_button" => "View Songs",
+            "pk" => "id"
+        ),
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "worshipSongsAlbum" => array(
+        "table" => "paul_audio_album",
+        "imagefolder" => "worship_songs/thumbs",
+        "image_field" => "image",
+        "title" => "Worship Songs Album",
+        "foreign_key" => array(),
+        "pk" => "id",
+         "writable"=>true,
+        "child_api" => array(
+            "child_api" => "worshipSongs",
+            "connect_button" => "View Songs",
+            "pk" => "id",
+        ),
+        "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "charityWorks" => array(
         "table" => "charity_work",
         "imagefolder" => "charity",
-        "title" => "Charity Works"
+        "image_field" => "image",
+        "title" => "Charity Works",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "writable"=>true,
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "young_partners" => array(
+        "table" => "young_partners",
+        "imagefolder" => "young_partners",
+        "image_field" => "image",
+        "title" => "Young Parter",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "magazine_registration" => array(
+        "table" => "magazine_registration",
+        "title" => "E-Magazine Registration",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "testimony" => array(
+        "table" => "paul_testimony",
+        "title" => "Testimony",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "prayer" => array(
+        "table" => "paul_prayer",
+        "title" => "Prayer",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "invite" => array(
+        "table" => "paul_invite",
+        "title" => "Invites",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "pastors" => array(
+        "table" => "pastors",
+        "title" => "Pastors Registration",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "bible_registration" => array(
+        "table" => "bible_registration",
+        "title" => "Bible Registration",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "youngPartners" => array(
+        "table" => "young_partners",
+        "imagefolder" => "young_partners",
+        "image_field" => "image",
+        "title" => "Young Parter",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "lifeChangingTv" => array(
+        "table" => "life_changing_tv",
+        "imagefolder" => "live_tv",
+        "image_field" => "image",
+        "title" => "Life Changing Tv",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "writable"=>true,
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "lifeChangingVideos" => array(
+        "table" => "life_changing_videos",
+        "title" => "Life Changing Videos",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "writable"=>true,
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "pastorsCollage" => array(
+        "table" => "pastors_images",
+        "imagefolder" => "pastors",
+        "image_field" => "image",
+        "title" => "Pastors Collage",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "writable"=>true,
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "system_log" => array(
+        "table" => "system_log",
+        "title" => "System Log",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "ignore_field" => array()
+    ),
+);
+
+define('APISET', $apiSet);
+
+$menuList = array(
+    "Reports" => array(
+        "magazine_registration",
+        "youngPartners",
+        "testimony",
+        "prayer",
+        "pastors",
+        "bible_registration",
+        "invite",
+    ),
+    "WorshipSongs" => array(
+        "worshipSongsAlbum",
+        "lyrics"
+    ),
+    "DataManagement" => array(
+        "amazoneBooks",
+        "charityWorks",
+        "donateImages",
+        "ourChurchese",
+        "aboutUs",
+        "tvPrograms",
+        "paulEvent",
+        "lifeChangingTv",
+        "lifeChangingVideos",
+        "todaysBlessings",
+        "pastorsCollage"
     )
 );
-define('APISET', $apiSet);
+
+define('MENULIST', $menuList);
+

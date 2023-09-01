@@ -4,11 +4,19 @@ $this->load->view('layout/topmenu');
 ?>
 <style>
     .shortImageTableData{
-        height:100px;
-        weight:100px;
+        height:70px;
+        width:100px;
+        background-position: center;
+        background-size: cover;
+    }
+    .shortImageTableData:parent(th){
+        width:100px;
     }
     #tableData{
         font-size: 12px;
+    }
+    .text-default{
+        color:white;
     }
 </style>
 <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
@@ -20,7 +28,26 @@ $this->load->view('layout/topmenu');
 
         <div class="panel panel-danger">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $title;?></h3>
+                <div class="panel-title text-default"><h3 class="text-default"><?php echo ucwords($title); ?></h3>
+                    <?php
+                    if ($parent_link) {
+                        ?>
+                        <div class="" style="width: fit-content;">
+                            <a href="<?php echo $parent_link ?>" class="btn btn-sm  btn-success"><i class="fa fa-arrow-left"></i>  Back</a>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                    <?php
+                    if ($writable) {
+                        ?>
+                        <div class="" style="width: fit-content;">
+                            <a href="<?php echo $writelink ?>" class="btn btn-sm  btn-success"><i class="fa fa-plus"></i>  Add New <?php echo ucwords($title); ?></a>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
             </div>
             <div class="panel-body overflow-auto">
                 <table id="tableData" class="table table-bordered ">
@@ -28,8 +55,15 @@ $this->load->view('layout/topmenu');
                         <tr>
                             <?php
                             foreach ($fieldsName as $fkey => $fvalue) {
-                                echo "<th>$fvalue</th>";
+                                if (!in_array($fvalue, $ignore_field)) {
+                                    echo "<th>" . ucwords($fvalue) . "</th>";
+                                }
                             }
+                            if ($has_link) {
+                                echo "<th>LINK</th>";
+                            }
+
+                            echo "<th>OPERATION</th>";
                             ?>
                         </tr>
                     </thead>
@@ -50,24 +84,47 @@ $this->load->view('layout/footer');
 ?> 
 <script>
     $(function () {
-        $('#tableData').DataTable({
+        var dataTableObj = $('#tableData').DataTable({
             "processing": true,
             "serverSide": true,
             "ajax": {
-                url: "<?php echo site_url("Api/listApiData/$apipath/yes") ?>",
+                url: "<?php echo site_url("Api/dataTableApi/$apipath/$parent_id") ?>",
                 type: 'GET'
             },
             dom: 'Blfrtip',
             buttons: [
                 'excel', 'pdf', 'csv', 'print'
             ],
+            "order": [[0, 'desc']],
             "columns": [
 <?php
 foreach ($fieldsName as $fkey => $fvalue) {
-    echo '{"data": "' . $fvalue . '"},';
+    if (!in_array($fvalue, $ignore_field)) {
+        echo '{"data": "' . $fvalue . '"},';
+    }
 }
+if ($has_link) {
+    echo '{"data": "link"},';
+}
+echo '{"data": "operations"},';
 ?>
             ]
         });
+
+        $('#tableData tbody').on('click', 'button.deleterow', function () {
+          confirmation($(this).attr("href"), this, dataTableObj);
+            
+        });
+
     });
+
+    function confirmation(executableLink, deleteObject, dataTableObj) {
+        var result = confirm("Are you sure to delete?");
+        if (result) {
+            $.get(executableLink ).then(function(){
+                var row = dataTableObj.row($(deleteObject).parents('tr')).remove().draw(false);
+            });
+        }
+    }
 </script>
+

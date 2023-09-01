@@ -7,100 +7,38 @@ if ($userdata) {
 }
 $menu_control = array();
 
-$dataManagementMenu = array();
-foreach (APISET as $key => $value) {
-    $dataManagementMenu[$value["title"]] = site_url("Services/tableReport/$key");
+function getSubMenu($main_menu) {
+    $dataManagementMenu = array();
+    foreach (MENULIST[$main_menu] as $key => $value) {
+        $api_menu_obj = APISET[$value];
+        $dataManagementMenu[$api_menu_obj["title"]] = site_url("Services/tableReport/$value");
+    }
+    return $dataManagementMenu;
 }
 
-$product_menu = array(
-    "title" => "Data Manegement",
+$report_menu = array(
+    "title" => "Report Manegement",
     "icon" => "ion-cube",
     "active" => "",
-    "sub_menu" => $dataManagementMenu,
+    "sub_menu" => getSubMenu("Reports"),
 );
+array_push($menu_control, $report_menu);
 
-
-
-array_push($menu_control, $product_menu);
-
-$order_menu = array(
-    "title" => "Order Manegement",
-    "icon" => "fa fa-list",
+$worship_songs_menu = array(
+    "title" => "Worship Songs",
+    "icon" => "ion-headphone",
     "active" => "",
-    "sub_menu" => array(
-        "Orders Reports" => site_url("Order/orderslist"),
-        "Order Analytics" => site_url("Order/index"),
-    ),
+    "sub_menu" => getSubMenu("WorshipSongs"),
 );
-array_push($menu_control, $order_menu);
+array_push($menu_control, $worship_songs_menu);
 
-$booking_menu = array(
-    "title" => "Appointment Mgmt.",
-    "icon" => "fa fa-calendar",
+$data_management_menu = array(
+    "title" => "Data Management",
+    "icon" => "ion-code-download",
     "active" => "",
-    "sub_menu" => array(
-        "Set Schedule" => site_url("Services/appointment"),
-        "Schedule List" => site_url("Services/appointmentList_report"),
-        "Schedule Booking Reports" => site_url("Services/appointment_report"),
-    ),
+    "sub_menu" => getSubMenu("DataManagement"),
 );
-array_push($menu_control, $booking_menu);
-
-$coupon_menu = array(
-    "title" => "Coupon Management",
-    "icon" => "fa fa-gift",
-    "active" => "",
-    "sub_menu" => array(
-        "Coupon Setting" => site_url("CouponManager/index"),
-        "Coupon Report" => site_url("CouponManager/couponReport"),
-    ),
-);
-array_push($menu_control, $coupon_menu);
-
-$client_menu = array(
-    "title" => "Client Manegement",
-    "icon" => "fa fa-users",
-    "active" => "",
-    "sub_menu" => array(
-        "Clients Reports" => site_url("UserManager/usersReport"),
-    ),
-);
-array_push($menu_control, $client_menu);
-
-$cms_menu = array(
-    "title" => "Content Management",
-    "icon" => "fa fa-file-text",
-    "active" => "",
-    "sub_menu" => array(
-        "Add New Look Book" => site_url("CMS/newLookbook"),
-        "Look Book" => site_url("CMS/lookbook"),
-    ),
-);
-array_push($menu_control, $cms_menu);
-
-$website_content = array(
-    "title" => "Website Management",
-    "icon" => "fa fa-globe",
-    "active" => "",
-    "sub_menu" => array(
-        "FAQ's Management" => site_url("CMS/faqSetting"),
-        "Testimonial Management" => site_url("CMS/testimonialSetting"),
-        "Website Pages" => site_url("CMS/pageList"),
-    ),
-);
-array_push($menu_control, $website_content);
-
-$msg_menu = array(
-    "title" => "Newsletter Management",
-    "icon" => "fa fa-envelope",
-    "active" => "",
-    "sub_menu" => array(
-        "Create Template" => site_url("CMS/createNewsletter"),
-        "Template List" => site_url("CMS/newsLetterTempalteList"),
-    ),
-);
-
-array_push($menu_control, $msg_menu);
+array_push($menu_control, $data_management_menu);
 
 $user_menu = array(
     "title" => "User Management",
@@ -112,51 +50,18 @@ $user_menu = array(
     ),
 );
 
-//array_push($menu_control, $user_menu);
-
-$webqnruiry_content = array(
-    "title" => "Contact From Report",
-    "icon" => "fa fa-phone",
-    "active" => "",
-    "sub_menu" => array(
-        "Report" => site_url("Services/contectFormReport"),
-    ),
-);
-array_push($menu_control, $webqnruiry_content);
+array_push($menu_control, $user_menu);
 
 $setting_menu = array(
     "title" => "Settings",
     "icon" => "fa fa-cogs",
     "active" => "",
     "sub_menu" => array(
-        "System Log" => site_url("Services/systemLogReport"),
-        "Report Configuration" => site_url("Configuration/reportConfiguration"),
-        "Payment & Shipping" => site_url("Configuration/checkokutConfiguration")
+        "System Log" => site_url("Services/tableReport/system_log"),
     ),
 );
 
 array_push($menu_control, $setting_menu);
-
-$social_menu = array(
-    "title" => "Social Management",
-    "icon" => "fa fa-facebook",
-    "active" => "",
-    "sub_menu" => array(
-        "Social Link" => site_url("CMS/socialLink"),
-    ),
-);
-array_push($menu_control, $social_menu);
-
-$seo_menu = array(
-    "title" => "SEO",
-    "icon" => "fa fa-area-chart",
-    "active" => "",
-    "sub_menu" => array(
-        "General" => site_url("CMS/siteSEOConfigUpdate"),
-        "Page Wise Setting" => site_url("CMS/seoPageSetting"),
-    ),
-);
-array_push($menu_control, $seo_menu);
 
 foreach ($menu_control as $key => $value) {
     $submenu = $value['sub_menu'];
@@ -168,6 +73,12 @@ foreach ($menu_control as $key => $value) {
     }
 }
 ?>
+<style>
+    .sidebar .sub-menu>li.active>a {
+        color: white;
+        font-weight: bold;
+    }
+</style>
 
 <!-- begin #sidebar -->
 <div id="sidebar" class="sidebar">
@@ -181,7 +92,7 @@ foreach ($menu_control as $key => $value) {
                 </div>
                 <div class="info textoverflow" >
 
-                    <?php echo $userdata['first_name']; ?>
+<?php echo $userdata['first_name']; ?>
                     <small class="textoverflow" title="<?php echo $userdata['username']; ?>"><?php echo $userdata['username']; ?></small>
                 </div>
             </li>
@@ -202,7 +113,7 @@ foreach ($menu_control as $key => $value) {
 
                 </ul>
             </li>
-            <?php foreach ($menu_control as $mkey => $mvalue) { ?>
+<?php foreach ($menu_control as $mkey => $mvalue) { ?>
 
                 <li class="has-sub <?php echo $mvalue['active']; ?>">
                     <a href="javascript:;">
@@ -211,15 +122,15 @@ foreach ($menu_control as $key => $value) {
                         <span><?php echo $mvalue['title']; ?></span>
                     </a>
                     <ul class="sub-menu">
-                        <?php
-                        $submenu = $mvalue['sub_menu'];
-                        foreach ($submenu as $key => $value) {
-                            ?>
+    <?php
+    $submenu = $mvalue['sub_menu'];
+    foreach ($submenu as $key => $value) {
+        ?>
                             <li><a href="<?php echo $value; ?>"><?php echo $key; ?></a></li>
                         <?php } ?>
                     </ul>
                 </li>
-            <?php } ?>
+                    <?php } ?>
             <li class="nav-header">Tailor Admin V <?php echo PANELVERSION; ?></li>
             <li class="nav-header">-</li>
         </ul>
@@ -229,3 +140,8 @@ foreach ($menu_control as $key => $value) {
 </div>
 <div class="sidebar-bg"></div>
 <!-- end #sidebar -->
+<script>
+$(document).ready(function(){
+    $("a[href='"+document.location.href+"']").parent().addClass("active");
+})
+</script> 

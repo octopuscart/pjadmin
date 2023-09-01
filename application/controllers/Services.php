@@ -13,16 +13,37 @@ class Services extends CI_Controller {
         } else {
             $this->user_id = 0;
         }
+        $this->load->model('Curd_model');
     }
 
-    public function tableReport($apipath) {
-        $serviceObj = APISET[$apipath];
-        $fieldsName = $this->db->list_fields($serviceObj["table"]);
-
-        $data = array("apipath" => $apipath, "fieldsName" => $fieldsName, "title"=>$serviceObj["title"]);
+    public function tableReport($apipath, $parent_id = 0) {
+        $data = $this->Curd_model->getApiConfig($apipath, $parent_id);
         $this->load->view('Services/tableReport', $data);
     }
 
+    public function addData($apipath, $parent_id = 0) {
+        $data = $this->Curd_model->getApiConfig($apipath, $parent_id);
+        $inputData = $this->input->post();
+        if (isset($inputData["submit"])) {
+
+            unset($inputData["submit"]);
+            $this->db->insert($data["serviceObj"]["table"], $inputData);
+             redirect("Services/tableReport/$apipath/$parent_id");
+        }
+        $this->load->view('Services/addRecord', $data);
+    }
+
+    public function updateData($apipath, $parent_id = 0) {
+        $data = $this->Curd_model->getApiConfig($apipath, $parent_id);
+        $inputData = $this->input->post();
+        if (isset($inputData["submit"])) {
+
+            unset($inputData["submit"]);
+            $this->db->insert($data["serviceObj"]["table"], $inputData);
+            redirect("Services/tableReport/$apipath/$parent_id");
+        }
+        $this->load->view('Services/addRecord', $data);
+    }
 }
 
 ?>

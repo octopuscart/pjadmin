@@ -138,7 +138,16 @@ $apiSets = array(
         "foreign_key" => array(),
         "pk" => "id",
         "writable" => true,
-        "ignore_field" => array("created_on", "create_by", "modified_on")
+        "ignore_field" => array("created_on", "create_by", "modified_on"),
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/our_churches",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
     ),
     "tvPrograms" => array(
         "table" => "tv_program",
@@ -148,7 +157,16 @@ $apiSets = array(
         "foreign_key" => array(),
         "pk" => "id",
         "writable" => true,
-        "ignore_field" => array("created_on", "create_by", "modified_on")
+        "ignore_field" => array("created_on", "create_by", "modified_on"),
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/tv_programs",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
     ),
     "bibleCollege" => array(
         "table" => "paul_bible",
@@ -157,7 +175,16 @@ $apiSets = array(
         "title" => "Bible College",
         "foreign_key" => array(),
         "pk" => "id",
-        "ignore_field" => array("created_on", "create_by", "modified_on")
+        "ignore_field" => array("created_on", "create_by", "modified_on"),
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/bible_collage",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
     ),
     "pastorsLeaders" => array(
         "table" => "pastors_images",
@@ -166,7 +193,16 @@ $apiSets = array(
         "title" => "Pastors Leaders",
         "foreign_key" => array(),
         "pk" => "id",
-        "ignore_field" => array("created_on", "create_by", "modified_on")
+        "ignore_field" => array("created_on", "create_by", "modified_on"),
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/pastors",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
     ),
     "aboutUs" => array(
         "table" => "paul_about_us",
@@ -176,7 +212,16 @@ $apiSets = array(
         "foreign_key" => array(),
         "pk" => "id",
         "writable" => true,
-        "ignore_field" => array("created_on", "create_by", "modified_on")
+        "ignore_field" => array("created_on", "create_by", "modified_on"),
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/about_us",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
     ),
     "todaysBlessings" => array(
         "table" => "todays_blessings",
@@ -186,6 +231,15 @@ $apiSets = array(
         "foreign_key" => array(),
         "pk" => "id",
         "writable" => true,
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/blessings",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "donateImages" => array(
@@ -196,6 +250,15 @@ $apiSets = array(
         "foreign_key" => array(),
         "pk" => "id",
         "writable" => true,
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/donate_support",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "paulEvent" => array(
@@ -206,6 +269,15 @@ $apiSets = array(
         "foreign_key" => array(),
         "pk" => "id",
         "writable" => true,
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/events",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "amazoneBooks" => array(
@@ -217,6 +289,15 @@ $apiSets = array(
         "foreign_key" => array(),
         "ignore_field" => array("created_on", "create_by", "modified_on"),
         "writable" => true,
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/amazone_books",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
     ),
     "lyricsTrack" => array(
         "table" => "lyrics_tracks",
@@ -234,7 +315,14 @@ $apiSets = array(
             "parent_api" => "lyrics"
         ),
         "field_config" => array(
-            "lyrics" => array("type" => "text", "widget" => "")
+            "lyrics" => array("type" => "text", "widget" => ""),
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/amazone_books",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
         ),
         "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
@@ -250,6 +338,15 @@ $apiSets = array(
             "child_api" => "lyricsTrack",
             "connect_button" => "View Lyrics",
             "pk" => "id"
+        ),
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/worship_songs/thumbs",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
         ),
         "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
@@ -299,8 +396,7 @@ $apiSets = array(
             "connect_button" => "View Songs",
             "pk" => "id"
         ),
-         "field_config" => array(
-          
+        "field_config" => array(
             "image" => array(
                 "type" => "file",
                 "widget" => "imageuploaer",
@@ -311,7 +407,6 @@ $apiSets = array(
         ),
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
-    
     "charityWorks" => array(
         "table" => "charity_work",
         "imagefolder" => "charity",
@@ -320,15 +415,33 @@ $apiSets = array(
         "foreign_key" => array(),
         "pk" => "id",
         "writable" => true,
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/charity",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
-    "young_partners" => array(
+    "youngPartners" => array(
         "table" => "young_partners",
         "imagefolder" => "young_partners",
         "image_field" => "image",
         "title" => "Young Parter",
         "foreign_key" => array(),
         "pk" => "id",
+         "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/young_partners",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "magazine_registration" => array(
@@ -373,15 +486,7 @@ $apiSets = array(
         "pk" => "id",
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
-    "youngPartners" => array(
-        "table" => "young_partners",
-        "imagefolder" => "young_partners",
-        "image_field" => "image",
-        "title" => "Young Parter",
-        "foreign_key" => array(),
-        "pk" => "id",
-        "ignore_field" => array("created_on", "create_by", "modified_on")
-    ),
+   
     "lifeChangingTv" => array(
         "table" => "life_changing_tv",
         "imagefolder" => "live_tv",
@@ -390,6 +495,15 @@ $apiSets = array(
         "foreign_key" => array(),
         "pk" => "id",
         "writable" => true,
+         "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/live_tv",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "lifeChangingVideos" => array(
@@ -408,6 +522,15 @@ $apiSets = array(
         "foreign_key" => array(),
         "pk" => "id",
         "writable" => true,
+          "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/pastors",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "system_log" => array(

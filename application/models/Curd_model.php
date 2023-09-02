@@ -112,7 +112,8 @@ class Curd_model extends CI_Model {
 
     public function deleteRecord($apipath, $id) {
         $serviceObj =  json_decode(APISET, true)[$apipath];
-        $pk_name = $serviceObj["pk"];
+       echo $pk_name = $serviceObj["pk"];
+       echo $id;
         $this->db->where($pk_name, $id);
         $this->db->delete($serviceObj["table"]);
     }

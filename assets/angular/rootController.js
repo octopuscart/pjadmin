@@ -18,6 +18,10 @@ Admin.directive('fileModel', ['$parse', function ($parse) {
                             $(element[0]).parents(".thumbnail").find("img").attr('src', e.target.result);
                         }
                         var reader = new FileReader();
+                        var fileobj = (element[0].files[0]);
+                        let file_size = fileobj.size/1000000;
+                        let filesizeFixedMB = file_size.toFixed(2)+" MB";
+                        console.log(filesizeFixedMB);
                         reader.onload = imageIsLoaded;
                         reader.readAsDataURL(element[0].files[0]);
                         modelSetter(scope, element[0].files[0]);

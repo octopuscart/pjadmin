@@ -166,27 +166,27 @@ class Api extends REST_Controller {
         }
     }
 
-    function ajax_upload_image_post($apipath) {
-        $apiConfig = $this->Curd_model->getApiConfig($apipath);
-        $serviceObj = $apiConfig["serviceObj"];
-        $imageFolder = (isset($serviceObj["imagefolder"]) ? $serviceObj["imagefolder"] : "");
+    function ajax_upload_post($filename) {;
         $response = array("file_path" => "", "file_name" => "", "error" => "");
         $temp1 = rand(100, 1000000);
-        $randomefilename = $this->Curd_model->generateRandomString(25, $apipath);
 
-        if (isset($_FILES["image_file"]["name"])) {
-            $ext1 = explode('.', $_FILES['image_file']['name']);
+        if (isset($_FILES["file_name_$filename"]["name"])) {
+            $apipath = $this->input->post("apipath_$filename");
+            $upload_folder_field = $this->input->post("upload_folder_field_$filename");
+            $allowed_types = $this->input->post("allowed_types_field_$filename");
+            $randomefilename = $this->Curd_model->generateRandomString(25, $apipath);
+            $ext1 = explode('.', $_FILES["file_name_$filename"]['name']);
             $ext = strtolower(end($ext1));
             $file_newname = $randomefilename . "." . $ext;
             $config['file_name'] = $file_newname;
-            $config['upload_path'] = 'assets/uploadata/' . $imageFolder;
-            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['upload_path'] =  $upload_folder_field;
+            $config['allowed_types'] = $allowed_types;
             $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('image_file')) {
+            if (!$this->upload->do_upload("file_name_$filename")) {
                 $response["error"] = $this->upload->display_errors();
             } else {
                 $data = $this->upload->data();
-                $response["file_path"] = base_url("assets/uploadata/$imageFolder/" . $data["file_name"]);
+                $response["file_path"] = base_url("$upload_folder_field/" . $data["file_name"]);
                 $response["file_name"] = $data["file_name"];
             }
         }

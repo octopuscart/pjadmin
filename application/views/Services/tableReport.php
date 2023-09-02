@@ -29,24 +29,26 @@ $this->load->view('layout/topmenu');
         <div class="panel panel-danger">
             <div class="panel-heading">
                 <div class="panel-title text-default"><h3 class="text-default"><?php echo ucwords($title); ?></h3>
-                    <?php
-                    if ($parent_link) {
-                        ?>
-                        <div class="" style="width: fit-content;">
-                            <a href="<?php echo $parent_link ?>" class="btn btn-sm  btn-success"><i class="fa fa-arrow-left"></i>  Back</a>
-                        </div>
+                    <div class="block-display row">
                         <?php
-                    }
-                    ?>
-                    <?php
-                    if ($writable) {
+                        if ($parent_link) {
+                            ?>
+                            <div class="col-md-3 pull-right" style="width: fit-content;">
+                                <a href="<?php echo $parent_link ?>" class="btn btn-sm  btn-success"><i class="fa fa-arrow-left"></i>  Back</a>
+                            </div>
+                            <?php
+                        }
                         ?>
-                        <div class="" style="width: fit-content;">
-                            <a href="<?php echo $writelink ?>" class="btn btn-sm  btn-success"><i class="fa fa-plus"></i>  Add New <?php echo ucwords($title); ?></a>
-                        </div>
                         <?php
-                    }
-                    ?>
+                        if ($writable) {
+                            ?>
+                            <div class="col-md-3 pull-left" style="width: fit-content;">
+                                <a href="<?php echo $writelink ?>" class="btn btn-sm  btn-success" ><i class="fa fa-plus"></i>  Add New <?php echo ucwords($title); ?></a>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
             <div class="panel-body overflow-auto">
@@ -112,8 +114,8 @@ echo '{"data": "operations"},';
         });
 
         $('#tableData tbody').on('click', 'button.deleterow', function () {
-          confirmation($(this).attr("href"), this, dataTableObj);
-            
+            confirmation($(this).attr("href"), this, dataTableObj);
+
         });
 
     });
@@ -121,7 +123,7 @@ echo '{"data": "operations"},';
     function confirmation(executableLink, deleteObject, dataTableObj) {
         var result = confirm("Are you sure to delete?");
         if (result) {
-            $.get(executableLink ).then(function(){
+            $.get(executableLink).then(function () {
                 var row = dataTableObj.row($(deleteObject).parents('tr')).remove().draw(false);
             });
         }

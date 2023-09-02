@@ -137,7 +137,7 @@ $apiSets = array(
         "title" => "Our Churches",
         "foreign_key" => array(),
         "pk" => "id",
-        "writable"=>true,
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "tvPrograms" => array(
@@ -147,7 +147,7 @@ $apiSets = array(
         "title" => "TV Programs",
         "foreign_key" => array(),
         "pk" => "id",
-        "writable"=>true,
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "bibleCollege" => array(
@@ -175,7 +175,7 @@ $apiSets = array(
         "title" => "About Us",
         "foreign_key" => array(),
         "pk" => "id",
-        "writable"=>true,
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "todaysBlessings" => array(
@@ -185,7 +185,7 @@ $apiSets = array(
         "title" => "Todays Blessings",
         "foreign_key" => array(),
         "pk" => "id",
-        "writable"=>true,
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "donateImages" => array(
@@ -195,7 +195,7 @@ $apiSets = array(
         "title" => "Donations",
         "foreign_key" => array(),
         "pk" => "id",
-        "writable"=>true,
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "paulEvent" => array(
@@ -205,7 +205,7 @@ $apiSets = array(
         "title" => "Church Events",
         "foreign_key" => array(),
         "pk" => "id",
-        "writable"=>true,
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "amazoneBooks" => array(
@@ -216,7 +216,7 @@ $apiSets = array(
         "pk" => "id",
         "foreign_key" => array(),
         "ignore_field" => array("created_on", "create_by", "modified_on"),
-        "writable"=>true,
+        "writable" => true,
     ),
     "lyricsTrack" => array(
         "table" => "lyrics_tracks",
@@ -233,7 +233,10 @@ $apiSets = array(
             "pk" => "id",
             "parent_api" => "lyrics"
         ),
-         "writable"=>true,
+        "field_config" => array(
+            "lyrics" => array("type" => "text", "widget" => "")
+        ),
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "lyrics" => array(
@@ -248,6 +251,7 @@ $apiSets = array(
             "connect_button" => "View Lyrics",
             "pk" => "id"
         ),
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "worshipSongs" => array(
@@ -263,7 +267,23 @@ $apiSets = array(
             "pk" => "id",
             "parent_api" => "worshipSongsAlbum",
         ),
-         "writable"=>true,
+        "field_config" => array(
+            "song" => array(
+                "type" => "file",
+                "widget" => "audioplayer",
+                "mime_type" => "audio/mp3",
+                "upload_folder" => "assets/uploadata/worship_songs",
+                "allowed_types" => 'mp3'
+            ),
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/worship_songs/thumbs",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "worshipSongsAlbum" => array(
@@ -273,29 +293,25 @@ $apiSets = array(
         "title" => "Worship Songs Album",
         "foreign_key" => array(),
         "pk" => "id",
-         "writable"=>true,
+        "writable" => true,
         "child_api" => array(
             "child_api" => "worshipSongs",
             "connect_button" => "View Songs",
             "pk" => "id"
         ),
-        "ignore_field" => array("created_on", "create_by", "modified_on")
-    ),
-    "worshipSongsAlbum" => array(
-        "table" => "paul_audio_album",
-        "imagefolder" => "worship_songs/thumbs",
-        "image_field" => "image",
-        "title" => "Worship Songs Album",
-        "foreign_key" => array(),
-        "pk" => "id",
-         "writable"=>true,
-        "child_api" => array(
-            "child_api" => "worshipSongs",
-            "connect_button" => "View Songs",
-            "pk" => "id",
+         "field_config" => array(
+          
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/worship_songs/thumbs",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
         ),
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
+    
     "charityWorks" => array(
         "table" => "charity_work",
         "imagefolder" => "charity",
@@ -303,7 +319,7 @@ $apiSets = array(
         "title" => "Charity Works",
         "foreign_key" => array(),
         "pk" => "id",
-        "writable"=>true,
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "young_partners" => array(
@@ -373,7 +389,7 @@ $apiSets = array(
         "title" => "Life Changing Tv",
         "foreign_key" => array(),
         "pk" => "id",
-        "writable"=>true,
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "lifeChangingVideos" => array(
@@ -381,7 +397,7 @@ $apiSets = array(
         "title" => "Life Changing Videos",
         "foreign_key" => array(),
         "pk" => "id",
-        "writable"=>true,
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "pastorsCollage" => array(
@@ -391,7 +407,7 @@ $apiSets = array(
         "title" => "Pastors Collage",
         "foreign_key" => array(),
         "pk" => "id",
-        "writable"=>true,
+        "writable" => true,
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
     "system_log" => array(

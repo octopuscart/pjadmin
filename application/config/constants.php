@@ -525,6 +525,13 @@ $apiSets = array(
         "pk" => "id",
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
+    "reach_us" => array(
+        "table" => "reach_us",
+        "title" => "Reach Us - Registration",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
    
     "lifeChangingTv" => array(
         "table" => "life_changing_tv",
@@ -592,6 +599,7 @@ $menuLists = array(
         "pastors",
         "bible_registration",
         "invite",
+        "reach_us",
     ),
     "WorshipSongs" => array(
         "worshipSongsAlbum",

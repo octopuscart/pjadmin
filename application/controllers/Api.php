@@ -129,16 +129,29 @@ class Api extends REST_Controller {
             $imagepath = isset($apiObj["imagefolder"]) ? $apiObj["imagefolder"] : "";
             $image_field = isset($apiObj["image_field"]) ? $apiObj["image_field"] : "";
             $child_table = isset($apiObj["child_api"]) ? $apiObj["child_api"] : array();
-            $config = array();
+            $has_audio = isset($apiObj["has_audio"]) ? $apiObj["has_audio"]:array();
+                
+            $config = array("field_config"=>array());
 
             if ($imagepath) {
                 $backgroundImage = "background-image:url(' " . base_url("assets/uploadata/$imagepath/") . "{field_value}')";
-                $config["field_config"] = array(
-                    "$image_field" => array(
+                $config["field_config"][ "$image_field"] = array(
                         "field_value" => $image_field,
                         "template" => '<div class="shortImageTableData" style="' . $backgroundImage . '"></div><p><a target="_blank" href="' . base_url("assets/uploadata/$imagepath/") . '{field_value}">View Image</a></p>'
-                    ),
                 );
+                
+            }
+
+            if($has_audio){
+                $songfilepath = $has_audio["upload_folder"];
+             
+                    $config["field_config"][$has_audio["field_name"]] = array(
+                        "field_value" =>  $has_audio["field_name"] ,
+                        
+                        "template" => '<div class="shortImageTableData" >{field_value}</div><p><a target="_blank" href="' . base_url("$songfilepath") . '/{field_value}">View File</a><audio controls><source src="' . base_url("$songfilepath") . '/{field_value}" type="audio/mpeg"></audio></p>'
+                    );
+                
+              
             }
 
             if ($child_table) {
@@ -164,6 +177,27 @@ class Api extends REST_Controller {
             $response = $this->Service_model->getOutput();
             $this->response($response);
         }
+    }
+
+    function insertDataApi_post($apipath)
+    {
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+        header('Access-Control-Allow-Origin: *');
+        $response = array("status"=>404, "message"=>"Error to submit request Error: 10001");
+        try {
+            $data = $this->Curd_model->getApiConfig($apipath);
+          
+        $inputData = $this->input->post();
+        if (isset($inputData["apikey"])) {
+            unset($inputData["apikey"]);
+            $this->db->insert($data["serviceObj"]["table"], $inputData);
+            $response = array("status"=>200, "message"=>"Request has been submitted");
+            $this->response($response);
+        }
+    }catch(Exception $e) {
+        $response["error"] = 'Message: ' .$e->getMessage();
+        $this->response($response);
+      }
     }
 
     function ajax_upload_post($filename) {;

@@ -261,11 +261,30 @@ $apiSets = array(
         ),
         "ignore_field" => array("created_on", "create_by", "modified_on")
     ),
-    "paulEvent" => array(
+    "churchEvent" => array(
         "table" => "paul_event",
         "imagefolder" => "events",
         "image_field" => "image",
         "title" => "Church Events",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "writable" => true,
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/events",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+        "churchUpdate" => array(
+        "table" => "church_updates",
+        "imagefolder" => "events",
+        "image_field" => "image",
+        "title" => "Church Updates",
         "foreign_key" => array(),
         "pk" => "id",
         "writable" => true,
@@ -364,6 +383,7 @@ $apiSets = array(
             "pk" => "id",
             "parent_api" => "worshipSongsAlbum",
         ),
+        "has_audio"=>array("upload_folder" => "assets/uploadata/worship_songs","field_name"=>"song"),
         "field_config" => array(
             "song" => array(
                 "type" => "file",
@@ -412,6 +432,25 @@ $apiSets = array(
         "imagefolder" => "charity",
         "image_field" => "image",
         "title" => "Charity Works",
+        "foreign_key" => array(),
+        "pk" => "id",
+        "writable" => true,
+        "field_config" => array(
+            "image" => array(
+                "type" => "file",
+                "widget" => "imageuploaer",
+                "mime_type" => "image/*",
+                "upload_folder" => "assets/uploadata/charity",
+                "allowed_types" => 'jpg|jpeg|png|gif'
+            ),
+        ),
+        "ignore_field" => array("created_on", "create_by", "modified_on")
+    ),
+    "charityImages" => array(
+        "table" => "charity_images",
+        "imagefolder" => "charity",
+        "image_field" => "image",
+        "title" => "Charity Images",
         "foreign_key" => array(),
         "pk" => "id",
         "writable" => true,
@@ -565,7 +604,8 @@ $menuLists = array(
         "ourChurchese",
         "aboutUs",
         "tvPrograms",
-        "paulEvent",
+        "churchEvent",
+        "churchUpdate",
         "lifeChangingTv",
         "lifeChangingVideos",
         "todaysBlessings",
@@ -574,4 +614,3 @@ $menuLists = array(
 );
 
 define('MENULIST', json_encode($menuLists));
-

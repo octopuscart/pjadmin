@@ -5,16 +5,16 @@ if (!defined('BASEPATH'))
 
 class Service_model extends CI_Model {
 
-    public string $tablename;
-    public array $column_order;
-    public array $column_search;
-    public array $default_order;
-    public array $post_data;
-    public array $config;
-    public array $child_table;
-    public string $pk;
-    public array $fk;
-    public string $parent_id;
+    public  $tablename;
+    public  $column_order;
+    public  $column_search;
+    public  $default_order;
+    public  $post_data;
+    public  $config;
+    public $child_table;
+    public  $pk;
+    public  $fk;
+    public  $parent_id;
 
     function __construct() {
         // Set table name
